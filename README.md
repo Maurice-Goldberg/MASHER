@@ -1,4 +1,4 @@
-# masher
+# MASHER
 
 ## Background
 *MASHER* is an interface that allows users to experience the joy of one of music's underappreciated genres: the mash-up. MASHER uses a pre-assembled set of audio files to create song mash-ups, giving the user complete control over which combinations of songs they wish to combine. With a total of 64 possible song mash-ups combining songs from a wide array of genres, the user can have endless fun frankensteining modern classics like Justin Bieber's "Where Are U Now" with canonical pop oldies such as Prince's "I Would Die 4 U."
@@ -40,6 +40,6 @@ Set up all audio controls
 ### Day 3:
 Do all last styling and try to implement some three.js 3D design features if possible
 
-### Bonus design ideas
+## Bonus design ideas
 7. Colors lightly strobe in time with music's BPM
 8. Animated head nods up and down in time with music
