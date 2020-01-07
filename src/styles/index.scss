@@ -1,0 +1,103 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: rgb(252, 97, 58);
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+}
+
+h1 {
+    color: black;
+    margin: 0 auto;
+    font-size: 55px;
+    margin-top: 15px;
+}
+
+#middle-section {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 85%;
+}
+
+button {
+    width: 140px;
+    height: 140px;
+    background: lightgray;
+    border: 1px solid black;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: rgb(155, 145, 145);
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+#play-pause-img {
+    width: 20px;
+    height: 20px;
+}
+
+.instrumentals, .vocals {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-left: 20px;
+    height: 100%;
+}
+
+.instrumentals ul, .vocals ul {
+    height: 80%;
+    width: 400px;
+    background: lightgray;
+    overflow-y: auto;
+    border-radius: 3%;
+}
+
+.instrumentals li, .vocals li {
+    background: white;
+    height: 50px;
+    width: 88%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+}
+
+.instrumentals li:hover, .vocals li:hover {
+    background: rgb(179, 168, 168);
+    cursor: pointer;
+}
+
+.instrumentals li:focus, .vocals li:focus {
+    outline: none;
+}
+
+.selected {
+    background: rgb(167, 125, 125) !important;
+}
+
+.instrumentals label, .vocals label {
+    color: black;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+.instrumentals input, .vocals input {
+    margin-top: 10px;
+}
