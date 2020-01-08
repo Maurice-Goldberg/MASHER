@@ -1,5 +1,3 @@
-const Buffer = require('./buffer');
-
 class Selection {
     constructor(buffer) {
         this.instrumentalList = document.querySelector("#instrumentals-ul").children;
@@ -9,34 +7,49 @@ class Selection {
         this.startBtn = document.querySelector('.start-btn');
         this.questionBtn = document.querySelector('#question-btn');
 
-        this.processInstClick = this.processInstClick.bind(this);
-        this.processVocalsClick = this.processVocalsClick.bind(this);
+        this.processInstTrackClick = this.processInstTrackClick.bind(this);
+        this.processVocalsTrackClick = this.processVocalsTrackClick.bind(this);
         this.buffer = buffer;
     }
 
-    processInstClick(i) {
+    processInstTrackClick(i) {
         for (let j = 0; j < this.instrumentalList.length; j++) {
             let child = this.instrumentalList[j];
             if (i === j) {
                 child.classList.add('selected');
                 this.buffer.instGainNodes[j].gain.value = 1;
 
+                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+                let img = document.querySelector(`#${firstName}-left-img`);
+                img.setAttribute("class", "showing");
             } else {
                 child.classList.remove('selected');
                 this.buffer.instGainNodes[j].gain.value = 0;
+
+                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+                let img = document.querySelector(`#${firstName}-left-img`);
+                img.setAttribute("class", "hidden");
             }
         }
     }
     
-    processVocalsClick(i) {
+    processVocalsTrackClick(i) {
         for (let j = 0; j < this.vocalList.length; j++) {
             let child = this.vocalList[j];
             if (i === j) {
                 child.classList.add('selected');
                 this.buffer.voxGainNodes[j].gain.value = 1;
+
+                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+                let img = document.querySelector(`#${firstName}-right-img`);
+                img.setAttribute("class", "showing");
             } else {
                 child.classList.remove('selected');
                 this.buffer.voxGainNodes[j].gain.value = 0;
+
+                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+                let img = document.querySelector(`#${firstName}-right-img`);
+                img.setAttribute("class", "hidden");
             }
         }
     }
@@ -56,12 +69,12 @@ class Selection {
     addClickListeners() {
         for (let i = 0; i < this.instrumentalList.length; i++) {
             let child = this.instrumentalList[i];
-            child.addEventListener('click', () => this.processInstClick(i));
+            child.addEventListener('click', () => this.processInstTrackClick(i));
         }
         
         for (let i = 0; i < this.vocalList.length; i++) {
             let child = this.vocalList[i];
-            child.onclick = () => this.processVocalsClick(i);
+            child.onclick = () => this.processVocalsTrackClick(i);
         }
 
         this.modalBg.onclick = () => {

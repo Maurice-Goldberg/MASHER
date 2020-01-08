@@ -30,7 +30,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -59,6 +58,7 @@ html {
 body {
     background: rgb(252, 97, 58);
     height: 95%;
+    overflow-y: hidden;
 }
 
 .content {
@@ -193,6 +193,48 @@ body {
     }
 }
 
+#images {
+    display: flex;
+}
+
+#left-img-wrapper, #right-img-wrapper {
+    width: 50%;
+    height: 100%;
+}
+
+#left-img-wrapper img {
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+#right-img-wrapper img {
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    z-index: -1;   
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.showing {
+    opacity: 1;
+}
+
 .main-top-wrapper {
     width: 100%;
     display: flex;
@@ -203,7 +245,11 @@ h1 {
     color: black;
     font-size: 55px;
     margin-top: 15px;
-    padding-left: 110px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 110px;
+    background: rgba(128, 128, 128, 0.514);
 }
 
 #header-wrapper {
@@ -248,10 +294,10 @@ h1 {
 }
 
 .control-panel {
-    margin-top: 90px;
-    height: 60%;
+    margin-top: 140px;
+    height: 40%;
     width: 300px;
-    background: lightgray;
+    background: rgba(211, 211, 211, 0.452);
     border-radius: 3%;
     display: flex;
     flex-direction: column;
@@ -265,8 +311,7 @@ h1 {
     background: lightgray;
     border: 1px solid black;
     border-radius: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 20px 10px 20px 10px;
 }
 
 #play-pause:hover {
@@ -298,7 +343,6 @@ h1 {
 
 #solo-btns {
     display: flex;
-
 }   
 
 #vox-solo-btn, #inst-solo-btn, #all-btn {
@@ -334,13 +378,13 @@ h1 {
 .instrumentals ul, .vocals ul {
     height: 80%;
     width: 400px;
-    background: lightgray;
+    background: rgba(211, 211, 211, 0.363);
     overflow-y: auto;
     border-radius: 3%;
 }
 
 .instrumentals li, .vocals li {
-    background: white;
+    background: rgba(255, 255, 255, 0.377);
     height: 50px;
     width: 88%;
     margin-left: 25px;
@@ -355,7 +399,7 @@ h1 {
 }
 
 .instrumentals li:hover, .vocals li:hover {
-    background: rgb(179, 168, 168);
+    background: rgba(179, 168, 168, 0.438);
     cursor: pointer;
 }
 
@@ -364,7 +408,7 @@ h1 {
 }
 
 .selected {
-    background: rgb(167, 125, 125) !important;
+    background: rgba(167, 125, 125, 0.356) !important;
 }
 
 .instrumentals label, .vocals label {
