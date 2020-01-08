@@ -1,56 +1,157 @@
-window.onload = init;
-let context;
-let bufferLoader;
+const BufferLoader = require('./buffer-loader.js');
 
-function init() {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
+class Buffer {
+    constructor() {
+        this.init = this.init.bind(this);
+        this.onLoad = this.onLoad.bind(this);
+        this.context = new AudioContext();
+        this.instGainNodes = [];
+        this.voxGainNodes = [];
+        this.instMasterGainNode = this.context.createGain();
+        this.instMasterGainNode.connect(this.context.destination);
+        this.voxMasterGainNode = this.context.createGain();
+        this.voxMasterGainNode.connect(this.context.destination);
+        this.numPlayClicks = 0;
+    }
+    
+    init() {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.bufferLoader = new BufferLoader(
+            this.context,
+            [
+                '/src/assets/stems/instrumentals/ariana_inst.wav',
+                '/src/assets/stems/instrumentals/grimes_inst.wav',
+                '/src/assets/stems/instrumentals/lizzo_inst.wav',
+                '/src/assets/stems/instrumentals/robyn_inst.wav',
+                '/src/assets/stems/instrumentals/kim_inst.wav',
+                '/src/assets/stems/instrumentals/justin_inst.wav',
+                '/src/assets/stems/instrumentals/charli_inst.wav',
+                '/src/assets/stems/instrumentals/katy_inst.wav',
+                '/src/assets/stems/vocals/ariana_vox.wav',
+                '/src/assets/stems/vocals/grimes_vox.wav',
+                '/src/assets/stems/vocals/lizzo_vox.wav',
+                '/src/assets/stems/vocals/robyn_vox.wav',
+                '/src/assets/stems/vocals/kim_vox.wav',
+                '/src/assets/stems/vocals/justin_vox.wav',
+                '/src/assets/stems/vocals/charli_vox.wav',
+                '/src/assets/stems/vocals/katy_vox.wav'
+            ],
+            this.onLoad
+        );
+        this.bufferLoader.load();
+    }
+    
+    onLoad(bufferList) {
+        this.instrumentals = [];
+        this.vocals = [];
 
-    bufferLoader = new BufferLoader(
-        context,
-        [
-            '/src/assets/stems/TestInstrumental.wav',
-            '/src/assets/stems/TestVocal.wav'
-        ],
-        onLoad
-    );
-    bufferLoader.load();
-}
+        for (let i = 0; i < 8; i++) {
+            this.instrumentals.push(this.context.createBufferSource());
+            this.instrumentals[i].buffer = bufferList[i];
 
-function onLoad(bufferList) {
-    // Create two sources and play them both together
-    let source1 = context.createBufferSource();
-    let source2 = context.createBufferSource();
+            this.instGainNodes[i] = this.context.createGain();
+            this.instrumentals[i].connect(this.instGainNodes[i]);
+            this.instGainNodes[i].connect(this.instMasterGainNode);
+            if(i === 0) {
+                this.instGainNodes[i].gain.value = 1;
+            } else {
+                this.instGainNodes[i].gain.value = 0;
+            }
 
-    source1.buffer = bufferList[0];
-    source2.buffer = bufferList[1];
+            this.instrumentals[i].loop = true;
+        }
+        
+        for (let i = 0; i < 8; i++) {
+            this.vocals.push(this.context.createBufferSource());
+            this.vocals[i].buffer = bufferList[i+8];
+            
+            this.voxGainNodes[i] = this.context.createGain();
+            this.vocals[i].connect(this.voxGainNodes[i]);
+            this.voxGainNodes[i].connect(this.voxMasterGainNode);
+            if (i === 0) {
+                this.voxGainNodes[i].gain.value = 1;
+            } else {
+                this.voxGainNodes[i].gain.value = 0;
+            }
+            
+            this.vocals[i].loop = true;
+        }
+    
+        let playPause = document.querySelector('#play-pause');
+        playPause.onclick = () => {
+            if (playPause.getAttribute("playStatus") === "paused") {
+                if(this.numPlayClicks === 0) {
+                    for (let i = 0; i < 8; i++) {
+                        this.instMasterGainNode.gain.value = 1;
+                        this.voxMasterGainNode.gain.value = 1;
+                        this.instrumentals[i].start(0);
+                        this.vocals[i].start(0);
+                    }
+                    this.numPlayClicks++;
+                } else {
+                    this.instMasterGainNode.gain.value = 1;
+                    this.voxMasterGainNode.gain.value = 1;
+                }
 
-    source1.connect(context.destination);
-    source2.connect(context.destination);
+                playPause.firstElementChild.setAttribute("src", "/src/assets/images/soundon.png");
+                playPause.setAttribute("playStatus", "playing");
+            } else {
+                this.instMasterGainNode.gain.value = 0;
+                this.voxMasterGainNode.gain.value = 0;
+                
+                //this takes some time, so make sure to account for this by creating a loading sign
+                playPause.firstElementChild.setAttribute("src", "/src/assets/images/mute.png");
+                playPause.setAttribute("playStatus", "paused");
+            }
+        }
 
-    //set up loop functionality
-    source1.loop = true;
-    source2.loop = true;
+        let instSoloBtn = document.querySelector("#inst-solo-btn");
+        let voxSoloBtn = document.querySelector("#vox-solo-btn");
+        let allBtn = document.querySelector('#all-btn');
+        instSoloBtn.onclick = (event) => {
+            event.stopPropagation();
+            //if it isn't already solod
+            if(!instSoloBtn.classList.contains("solod")) {
+                //show it's been selected
+                instSoloBtn.setAttribute("class", "solod");
+                voxSoloBtn.setAttribute("class", "muted");
+                allBtn.setAttribute("class", "muted");
 
+                //mute vox channel
+                this.voxMasterGainNode.gain.value = 0;
+                this.instMasterGainNode.gain.value = 1;
+            }
+        }
 
-    //play and pause buttons
-    let playPause = document.querySelector('#play-pause');
+        voxSoloBtn.onclick = (event) => {
+            event.stopPropagation();
+            //if it isn't already solod
+            if (!voxSoloBtn.classList.contains("solod")) {
+                //show it's been selected
+                voxSoloBtn.setAttribute("class", "solod");
+                instSoloBtn.setAttribute("class", "muted");
+                allBtn.setAttribute("class", "muted");
 
-    playPause.onclick = () => {
-        if (playPause.getAttribute("playStatus") === "paused") {
-            source1.start(0);
-            source2.start(0);
-            playPause.firstElementChild.setAttribute("src", "/src/assets/images/pause.png");
-            playPause.setAttribute("playStatus", "playing");
-        } else {
-            init();
-            //how do i have it resume from where it gets paused?
+                //mute inst channel
+                this.voxMasterGainNode.gain.value = 1;
+                this.instMasterGainNode.gain.value = 0;
+            }
+        }
 
-            source1.stop(0);
-            source2.stop(0);
-            playPause.firstElementChild.setAttribute("src", "/src/assets/images/play.png");
-            playPause.setAttribute("playStatus", "paused");
-        } 
+        allBtn.onclick = (event) => {
+            event.stopPropagation();
+            if (!allBtn.classList.contains("solod")) {
+                //show it's been selected
+                allBtn.setAttribute("class", "solod");
+                voxSoloBtn.setAttribute("class", "muted");
+                instSoloBtn.setAttribute("class", "muted");
+
+                //unmute both channels
+                this.voxMasterGainNode.gain.value = 1;
+                this.instMasterGainNode.gain.value = 1;
+            }
+        }
     }
 }
 
+module.exports = Buffer;

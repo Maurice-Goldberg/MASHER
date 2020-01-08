@@ -1,33 +1,267 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	overflow-x: hidden;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+//normal CSS
+
 html {
     height: 100%;
 }
 
 body {
     background: rgb(252, 97, 58);
+    height: 95%;
+}
+
+.content {
     display: flex;
     flex-direction: column;
-    height: 95%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  opacity: 1;
+  animation-name: modal_background_fade_in;
+  animation-duration: 0.7s;
+}
+
+.modal-child {
+  background: rgba(211, 211, 211, 0.623);
+  animation-name: modal_child_fade_in;
+  animation-duration: 0.7s;
+  margin: 0 auto;
+  opacity: 1;
+  z-index: 11;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  top: 14%;
+  height: 450px;
+  width: 600px;
+  border-radius: 5px;
+}
+
+.modal-child-fade-out {
+  animation-name: modal_child_fade_out;
+  animation-duration: 0.7s;
+  opacity: 0;
+  z-index: -1;
+}
+
+.modal-background-fade-out {
+  animation-name: modal_background_fade_out;
+  animation-duration: 0.7s;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.welcome {
+    margin-top: -250px;
+    font-size: 30px;
+    margin-left: 150px;
+    margin-bottom: 20px;
+}
+
+.instructions, a, .start-btn {
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.start-btn:hover {
+    cursor: pointer;
+    background: rgb(116, 115, 115);
+    border: 1px solid rgb(116, 115, 115);
+}
+
+.start-btn:active {
+    background: rgb(87, 86, 86);
+    border: 1px solid rgb(87, 86, 86);
+}
+
+.start-btn:focus {
+    outline: none;
+}
+
+.modal-child .top-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right: 12px;
+    margin-top: -320px;
+}
+
+
+
+@keyframes modal_child_fade_in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal_background_fade_in {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes modal_child_fade_out {
+    from {
+        opacity: 1;
+    }
+    to {
+      opacity: 0;
+  }
+}
+
+@keyframes modal_background_fade_out {
+    from {
+        background: rgba(0, 0, 0, 0.7);
+    }
+    to {
+        background: transparent;
+    }
+}
+
+.main-top-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {
     color: black;
-    margin: 0 auto;
     font-size: 55px;
     margin-top: 15px;
+    padding-left: 110px;
+}
+
+#header-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#question-btn {
+    text-align: right;
+    margin-top: 15px;
+    margin-right: 50px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
+    background: rgb(161, 161, 161);
+    text-align: center;
+    vertical-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, serif;
+}
+
+#question-btn:hover {
+    background: rgb(122, 122, 122);
+    cursor: pointer;
 }
 
 #middle-section {
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
-    height: 85%;
+    height: 88%;
 }
 
-button {
-    width: 140px;
-    height: 140px;
+.control-panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.control-panel {
+    margin-top: 90px;
+    height: 60%;
+    width: 300px;
+    background: lightgray;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#play-pause {
+    width: 110px;
+    height: 110px;
     background: lightgray;
     border: 1px solid black;
     border-radius: 100%;
@@ -35,20 +269,60 @@ button {
     margin-right: 10px;
 }
 
-button:hover {
+#play-pause:hover {
     background: rgb(155, 145, 145);
     cursor: pointer;
 }
 
-button:focus {
+#play-pause:focus {
     outline: none;
 }
 
 #play-pause-img {
-    width: 20px;
-    height: 20px;
+    margin-left: 6px;
+    width: 50px;
+    height: 50px;
 }
 
+.solo-btn {
+    background: rgb(182, 181, 181);
+}
+
+.solod {
+    background: rgb(255, 139, 139);
+}
+
+.muted {
+    background: rgb(146, 145, 145);
+}
+
+#solo-btns {
+    display: flex;
+
+}   
+
+#vox-solo-btn, #inst-solo-btn, #all-btn {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+#vox-solo-btn:focus, #inst-solo-btn:focus, #all-btn:focus {
+    outline: none;
+}
+
+#vox-solo-btn:hover, #inst-solo-btn:hover, #all-btn:hover {
+    cursor: pointer;
+}
+
+#vox-solo-btn:active, #inst-solo-btn:active, #all-btn:active {
+    border: none;
+    box-shadow: none;
+
+}
 .instrumentals, .vocals {
     display: flex;
     flex-direction: column;
@@ -69,6 +343,7 @@ button:focus {
     background: white;
     height: 50px;
     width: 88%;
+    margin-left: 25px;
     margin-top: 20px;
     margin-bottom: 20px;
     list-style: none;
@@ -76,7 +351,7 @@ button:focus {
     border-radius: 5px;
     text-align: center;
     line-height: 50px;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .instrumentals li:hover, .vocals li:hover {
@@ -96,6 +371,7 @@ button:focus {
     color: black;
     font-size: 30px;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .instrumentals input, .vocals input {

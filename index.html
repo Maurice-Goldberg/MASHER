@@ -5,54 +5,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>MASHER</title>
-        <script type="text/javascript" src="src/scripts/buffer-loader.js"></script>
-        <script src="src/scripts/buffer.js"></script>
-        <script src="src/scripts/selection.js"></script>
+        <script src="./dist/index.js"></script>
         <link rel="stylesheet" href="/dist/main.css">
-        <script src="/dist/main.js"></script>
     </head>
+    <div class="modal-background">
+        <div class="modal-child">
+            <h2 class="welcome">Welcome to MASHER!</h2>
+            <p class="instructions">MASHER... is an app :)</p>
+            <a href="https:/github.com/maurice-goldberg/masher">Github</a>
+            <button class="start-btn">Got it! Let's play :)</button>
+        </div>
+    </div>
     <body>
-        <h1>MASHER</h1>
-
-        <div id="middle-section">
-            <div class="instrumentals">
-                <label>Instrumentals</label>
-                <ul id="instrumentals-ul">
-                    <li tabIndex="0">Robyn - Dancing On My Own</li>
-                    <li tabIndex="0">Kim Petras - Heart to Break</li>
-                    <li tabIndex="0">Charli XCX - Blame It On U</li>
-                    <li tabIndex="0">Ariana Grande - Bad Idea</li>
-                    <li tabIndex="0">Taylor Swift - Hands Tied</li>
-                    <li tabIndex="0">Caroline Polachek - Ocean of Tears</li>
-                    <li tabIndex="0">Lizzo - Juice</li>
-                    <li tabIndex="0">Charli XCX - Gone</li>
-                    <li tabIndex="0">Justin Bieber - Where Are U Now</li>
-                    <li tabIndex="0">Grimes - Kill v. Maim</li>
-                    <li tabIndex="0">Post Malone & Swae Lee - Sunflower</li>
-                    <li tabIndex="0">Lorde - Green Light</li>
-                </ul>
-                <input id="instrumental-volume" type="range">
+        <div id="content" style="height: 100%">
+            <div class="main-top-wrapper">
+                <div id="header-wrapper">
+                    <h1>MASHER</h1>
+                </div>
+                <div id="question-btn">?</div>
             </div>
-            <button id="play-pause" playStatus="paused">
-                <img id="play-pause-img" src="src/assets/images/play.png">
-            </button>
-            <div class="vocals">
-                <label>Vocals</label>
-                <ul id="vocals-ul">
-                    <li tabIndex="0">Robyn - Dancing On My Own</li>
-                    <li tabIndex="0">Kim Petras - Heart to Break</li>
-                    <li tabIndex="0">Charli XCX - Blame It On U</li>
-                    <li tabIndex="0">Ariana Grande - Bad Idea</li>
-                    <li tabIndex="0">Taylor Swift - Hands Tied</li>
-                    <li tabIndex="0">Caroline Polachek - Ocean of Tears</li>
-                    <li tabIndex="0">Lizzo - Juice</li>
-                    <li tabIndex="0">Charli XCX - Gone</li>
-                    <li tabIndex="0">Justin Bieber - Where Are U Now</li>
-                    <li tabIndex="0">Grimes - Kill v. Maim</li>
-                    <li tabIndex="0">Post Malone & Swae Lee - Sunflower</li>
-                    <li tabIndex="0">Lorde - Green Light</li>
-                </ul>
-                <input id="vocals-volume" type="range">
+            <div id="middle-section">
+                <div class="instrumentals">
+                    <label>Instrumentals</label>
+                    <ul id="instrumentals-ul">
+                        <li tabIndex="0" class="selected">Ariana Grande - Breathin</li>
+                        <li tabIndex="0">Grimes - Kill v. Maim</li>
+                        <li tabIndex="0">Lizzo - Juice</li>
+                        <li tabIndex="0">Robyn - Dancing On My Own</li>
+                        <li tabIndex="0">Kim Petras - Heart To Break</li>
+                        <li tabIndex="0">Justin Bieber - What Do You Mean?</li>
+                        <li tabIndex="0">Charli XCX - Focus</li>
+                        <li tabIndex="0">Katy Perry - Teenage Dream</li>
+                    </ul>
+                </div>
+                <div class="control-panel-wrapper">
+                    <div class="control-panel">
+                        <button id="play-pause" playStatus="paused">
+                            <img id="play-pause-img" src="src/assets/images/play.png">
+                        </button>
+                        <div id="solo-btns">
+                            <button class="muted" id="inst-solo-btn">Solo Instumental</button>
+                            <button class="solod" id="all-btn">All</button>
+                            <button class="muted" id="vox-solo-btn">Solo Vocals</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="vocals">
+                    <label>Vocals</label>
+                    <ul id="vocals-ul">
+                        <li tabIndex="0" class="selected">Ariana Grande - Breathin</li>
+                        <li tabIndex="0">Grimes - Kill v. Maim</li>
+                        <li tabIndex="0">Lizzo - Juice</li>
+                        <li tabIndex="0">Robyn - Dancing On My Own</li>
+                        <li tabIndex="0">Kim Petras - Heart To Break</li>
+                        <li tabIndex="0">Justin Bieber - What Do You Mean?</li>
+                        <li tabIndex="0">Charli XCX - Focus</li>
+                        <li tabIndex="0">Katy Perry - Teenage Dream</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>
