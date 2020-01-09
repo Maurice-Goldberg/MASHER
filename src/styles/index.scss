@@ -209,6 +209,16 @@ body {
     display: flex;
 }
 
+#full-black-bg {
+    background: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
 #black-bg-left {
     background: black;
     height: 100%;
@@ -219,7 +229,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -1;
+    z-index: -2;
 }
 
 #black-bg-right {
@@ -232,7 +242,7 @@ body {
     bottom: 0;
     left: 50%;
     right: 0;
-    z-index: -1;
+    z-index: -2;
 }
 
 #left-img-wrapper, #right-img-wrapper {
@@ -249,7 +259,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -3;
+    z-index: -4;
 }
 
 #right-img-wrapper img {
@@ -262,7 +272,7 @@ body {
     bottom: 0;
     left: 50%;
     right: 0;
-    z-index: -3;   
+    z-index: -4;   
 }
 
 #opacity-creator-left {
@@ -346,7 +356,7 @@ h1 {
     padding-right: 7px;
     margin-left: 110px;
     text-align: center;
-    background: rgba(211, 211, 211, 0.712);
+    background: rgba(204, 159, 159, 0.712);
     border-radius: 5px;
 }
 
@@ -487,7 +497,7 @@ h1:hover {
 .instrumentals ul, .vocals ul {
     height: 80%;
     width: 400px;
-    background: rgba(211, 211, 211, 0.445);
+    background: rgba(211, 211, 211, 0.349);
     overflow-y: auto;
     border-bottom-right-radius: 3%;
     border-bottom-left-radius: 3%;
@@ -514,7 +524,7 @@ h1:hover {
 }
 
 .instrumentals li:hover, .vocals li:hover {
-    background: rgba(179, 168, 168, 0.438);
+    background: rgba(182, 160, 160, 0.438);
     cursor: pointer;
 }
 
@@ -527,7 +537,7 @@ h1:hover {
 }
 
 .selected {
-    background: rgba(167, 125, 125, 0.411) !important;
+    background: rgba(177, 124, 124, 0.411) !important;
 }
 
 .instrumentals label, .vocals label {
@@ -538,7 +548,7 @@ h1:hover {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: rgba(179, 168, 168, 0.514);
+    background: rgba(179, 156, 156, 0.514);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }

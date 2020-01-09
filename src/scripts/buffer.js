@@ -79,6 +79,10 @@ class Buffer {
             if (playPause.getAttribute("playStatus") === "paused") {
                 playPause.firstElementChild.setAttribute("src", "/src/assets/images/soundon.png");
                 playPause.setAttribute("playStatus", "playing");
+
+                //get rid of black bg
+                document.querySelector("#full-black-bg").setAttribute("class", "hidden");
+
                 if(this.numPlayClicks === 0) {
                     for (let i = 0; i < 8; i++) {
                         this.finalMasterGainNode.gain.value = 1;
@@ -101,16 +105,15 @@ class Buffer {
                     }
                 } else {
                     this.finalMasterGainNode.gain.value = 1;
-                    document.querySelector("#black-bg-left").setAttribute("class", "hidden");
-                    document.querySelector("#black-bg-right").setAttribute("class", "hidden");
                 }
             } else {
                 this.finalMasterGainNode.gain.value = 0;
                 
                 playPause.firstElementChild.setAttribute("src", "/src/assets/images/mute.png");
                 playPause.setAttribute("playStatus", "paused");
-                document.querySelector("#black-bg-left").setAttribute("class", "showing");
-                document.querySelector("#black-bg-right").setAttribute("class", "showing");
+
+                //cover with black bg
+                document.querySelector("#full-black-bg").setAttribute("class", "showing");
             }
         }
 
