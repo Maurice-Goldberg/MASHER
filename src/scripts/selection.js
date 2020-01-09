@@ -15,19 +15,27 @@ class Selection {
     processInstTrackClick(i) {
         for (let j = 0; j < this.instrumentalList.length; j++) {
             let child = this.instrumentalList[j];
-            if (i === j) {
-                child.classList.add('selected');
-                this.buffer.instGainNodes[j].gain.value = 1;
+            let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+            let img = document.querySelector(`#${firstName}-left-img`);
 
-                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
-                let img = document.querySelector(`#${firstName}-left-img`);
-                img.setAttribute("class", "showing");
+            if (i === j) {
+                if(child.classList.contains("selected")) {
+                    child.classList.remove('selected');
+                    this.buffer.instGainNodes[j].gain.value = 0;
+
+                    img.setAttribute("class", "hidden");
+                    document.querySelector("#black-bg-left").setAttribute("class", "showing");
+                } else {
+                    child.classList.add('selected');
+                    this.buffer.instGainNodes[j].gain.value = 1;
+
+                    img.setAttribute("class", "showing");
+                    document.querySelector("#black-bg-left").setAttribute("class", "hidden");
+                }
             } else {
                 child.classList.remove('selected');
                 this.buffer.instGainNodes[j].gain.value = 0;
 
-                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
-                let img = document.querySelector(`#${firstName}-left-img`);
                 img.setAttribute("class", "hidden");
             }
         }
@@ -36,19 +44,28 @@ class Selection {
     processVocalsTrackClick(i) {
         for (let j = 0; j < this.vocalList.length; j++) {
             let child = this.vocalList[j];
-            if (i === j) {
-                child.classList.add('selected');
-                this.buffer.voxGainNodes[j].gain.value = 1;
+            let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+            let img = document.querySelector(`#${firstName}-right-img`);
 
-                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
-                let img = document.querySelector(`#${firstName}-right-img`);
-                img.setAttribute("class", "showing");
+            if (i === j) {
+
+                if(child.classList.contains("selected")) {
+                    child.classList.remove('selected');
+                    this.buffer.voxGainNodes[j].gain.value = 0;
+
+                    img.setAttribute("class", "hidden");
+                    document.querySelector("#black-bg-right").setAttribute("class", "showing");
+                } else {
+                    child.classList.add('selected');
+                    this.buffer.voxGainNodes[j].gain.value = 1;
+
+                    img.setAttribute("class", "showing");
+                    document.querySelector("#black-bg-right").setAttribute("class", "hidden");
+                }
             } else {
                 child.classList.remove('selected');
                 this.buffer.voxGainNodes[j].gain.value = 0;
 
-                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
-                let img = document.querySelector(`#${firstName}-right-img`);
                 img.setAttribute("class", "hidden");
             }
         }

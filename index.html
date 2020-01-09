@@ -6,21 +6,36 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>MASHER</title>
         <script src="./dist/index.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/dist/main.css">
     </head>
     <div class="modal-background">
         <div class="modal-child">
             <h2 class="welcome">Welcome to MASHER!</h2>
-            <p class="instructions">MASHER... is an app :)</p>
-            <a href="https:/github.com/maurice-goldberg/masher">Github</a>
-            <button class="start-btn">Got it! Let's play :)</button>
+            <p class="instructions">
+                MASHER is a pop song mash-up creator built using Vanilla Javascript and the Web Audio API.
+                Mix and match vocals and instrumentals for your enjoyment from contemporary pop songs from artists such as Ariana Grande and Lizzo.
+                To just hear the vocal or instrumental part, select the "Solo instrumental" or "Solo vocals" buttons respectively. <br/><br/>
+                Some of my favorite combos to try: <br/><br/>
+                - Ariana Grande (instrumental) + Justin Bieber (vocal) <br/>
+                - Lizzo (instrumental) + Charli XCX (vocal) <br/>
+                - Robyn (instrumental) + Katy Perry (vocal) <br/>
+                - Grimes (instrumental) + Kim Petras (vocal) 
+
+            </p>
+            <div class="modal-footer">
+                <a href="https:/github.com/maurice-goldberg/masher">MASHER Github</a>
+                <button class="start-btn">Let's mash!</button>
+            </div>
         </div>
     </div>
     <body>
         <div id="content" style="height: 100%">
             <div id="images">
                 <div id="left-img-wrapper">
-                    <img class="showing" id="ariana-left-img" src="/src/assets/images/artist-pictures/ariana/1.jpg">
+                    <div class="showing" id="black-bg-left"></div>
+                    <div id="opacity-creator-left"></div>
+                    <img class="hidden" id="ariana-left-img" src="/src/assets/images/artist-pictures/ariana/1.jpg">
                     <img class="hidden" id="grimes-left-img" src="/src/assets/images/artist-pictures/grimes/5.jpg">
                     <img class="hidden" id="lizzo-left-img" src="/src/assets/images/artist-pictures/lizzo/9.jpg">
                     <img class="hidden" id="robyn-left-img" src="/src/assets/images/artist-pictures/robyn/13.jpg">
@@ -30,7 +45,9 @@
                     <img class="hidden" id="katy-left-img" src="/src/assets/images/artist-pictures/katy/29.jpg">
                 </div>
                 <div id="right-img-wrapper">
-                    <img id="ariana-right-img" src="/src/assets/images/artist-pictures/ariana/1.jpg">
+                    <div id="opacity-creator-right"></div>
+                    <div class="showing" id="black-bg-right"></div>
+                    <img class="hidden" id="ariana-right-img" src="/src/assets/images/artist-pictures/ariana/1.jpg">
                     <img class="hidden" id="grimes-right-img" src="/src/assets/images/artist-pictures/grimes/5.jpg">
                     <img class="hidden" id="lizzo-right-img" src="/src/assets/images/artist-pictures/lizzo/9.jpg">
                     <img class="hidden" id="robyn-right-img" src="/src/assets/images/artist-pictures/robyn/13.jpg">
@@ -51,7 +68,7 @@
                 <div class="instrumentals">
                     <label>Instrumentals</label>
                     <ul id="instrumentals-ul">
-                        <li tabIndex="0" class="selected">Ariana Grande - Breathin</li>
+                        <li tabIndex="0">Ariana Grande - Breathin</li>
                         <li tabIndex="0">Grimes - Kill v. Maim</li>
                         <li tabIndex="0">Lizzo - Juice</li>
                         <li tabIndex="0">Robyn - Dancing On My Own</li>
@@ -64,19 +81,19 @@
                 <div class="control-panel-wrapper">
                     <div class="control-panel">
                         <button id="play-pause" playStatus="paused">
-                            <img id="play-pause-img" src="src/assets/images/play.png">
+                            <img id="loading-img" src="src/assets/images/loading.svg">
                         </button>
                         <div id="solo-btns">
-                            <button class="muted" id="inst-solo-btn">Solo Instumental</button>
+                            <button class="muted" id="inst-solo-btn">Instumental only</button>
                             <button class="solod" id="all-btn">All</button>
-                            <button class="muted" id="vox-solo-btn">Solo Vocals</button>
+                            <button class="muted" id="vox-solo-btn">Vocals only</button>
                         </div>
                     </div>
                 </div>
                 <div class="vocals">
                     <label>Vocals</label>
                     <ul id="vocals-ul">
-                        <li tabIndex="0" class="selected">Ariana Grande - Breathin</li>
+                        <li tabIndex="0">Ariana Grande - Breathin</li>
                         <li tabIndex="0">Grimes - Kill v. Maim</li>
                         <li tabIndex="0">Lizzo - Juice</li>
                         <li tabIndex="0">Robyn - Dancing On My Own</li>

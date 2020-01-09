@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, button, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -20,7 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font-family: 'Comfortaa', cursive;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -28,9 +28,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -56,7 +58,7 @@ html {
 }
 
 body {
-    background: rgb(252, 97, 58);
+    background: transparent;
     height: 95%;
     overflow-y: hidden;
 }
@@ -82,7 +84,7 @@ body {
 }
 
 .modal-child {
-  background: rgba(211, 211, 211, 0.623);
+  background: rgba(211, 211, 211, 0.842);
   animation-name: modal_child_fade_in;
   animation-duration: 0.7s;
   margin: 0 auto;
@@ -94,8 +96,8 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  top: 14%;
-  height: 450px;
+  top: 9%;
+  height: 500px;
   width: 600px;
   border-radius: 5px;
 }
@@ -120,9 +122,9 @@ body {
 }
 
 .welcome {
-    margin-top: -250px;
+    margin-top: 15px;
     font-size: 30px;
-    margin-left: 150px;
+    margin-left: 135px;
     margin-bottom: 20px;
 }
 
@@ -130,17 +132,21 @@ body {
     margin-left: 15px;
     margin-bottom: 20px;
     font-size: 20px;
+    line-height: 24px;
+}
+
+.start-btn {
+    border-radius: 5px;
+    padding: 8px;
 }
 
 .start-btn:hover {
     cursor: pointer;
-    background: rgb(116, 115, 115);
-    border: 1px solid rgb(116, 115, 115);
+    background: rgb(224, 223, 223);
 }
 
 .start-btn:active {
-    background: rgb(87, 86, 86);
-    border: 1px solid rgb(87, 86, 86);
+    background: rgb(209, 209, 209);
 }
 
 .start-btn:focus {
@@ -153,6 +159,12 @@ body {
     justify-content: center;
     margin-right: 12px;
     margin-top: -320px;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
 }
 
 
@@ -197,6 +209,32 @@ body {
     display: flex;
 }
 
+#black-bg-left {
+    background: black;
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+#black-bg-right {
+    background: black;
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    z-index: -1;
+}
+
 #left-img-wrapper, #right-img-wrapper {
     width: 50%;
     height: 100%;
@@ -211,7 +249,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -1;
+    z-index: -3;
 }
 
 #right-img-wrapper img {
@@ -224,15 +262,64 @@ body {
     bottom: 0;
     left: 50%;
     right: 0;
-    z-index: -1;   
+    z-index: -3;   
+}
+
+#opacity-creator-left {
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -2;
+}
+
+#opacity-creator-right {
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    position: absolute;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    z-index: -2;  
 }
 
 .hidden {
     opacity: 0;
+    animation-name: fadeout;
+    animation-duration: 0.3s;
 }
 
 .showing {
     opacity: 1;
+    animation-name: fadein;
+    animation-duration: 0.3s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .main-top-wrapper {
@@ -241,15 +328,30 @@ body {
     justify-content: space-between;
 }
 
+@font-face {
+    font-family: 'robota';
+    src: url('/src/styles/fonts/robota/robota.woff2') format('woff2'),
+         url('/src/styles/fonts/robota/robota.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 h1 {
     color: black;
-    font-size: 55px;
+    font-family: 'robota';
+    font-size: 65px;
     margin-top: 15px;
     padding-top: 10px;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 7px;
     margin-left: 110px;
-    background: rgba(128, 128, 128, 0.514);
+    text-align: center;
+    background: rgba(211, 211, 211, 0.712);
+    border-radius: 5px;
+}
+
+h1:hover {
+    cursor: default;
 }
 
 #header-wrapper {
@@ -266,15 +368,14 @@ h1 {
     width: 60px;
     height: 60px;
     padding: 8px;
-    background: rgb(161, 161, 161);
+    background: rgba(161, 161, 161, 0.856);
     text-align: center;
     vertical-align: center;
     font-size: 50px;
-    font-family: Arial, Helvetica, serif;
 }
 
 #question-btn:hover {
-    background: rgb(122, 122, 122);
+    background: rgba(122, 122, 122, 0.781);
     cursor: pointer;
 }
 
@@ -297,7 +398,7 @@ h1 {
     margin-top: 140px;
     height: 40%;
     width: 300px;
-    background: rgba(211, 211, 211, 0.452);
+    background: rgba(211, 211, 211, 0.6);
     border-radius: 3%;
     display: flex;
     flex-direction: column;
@@ -308,14 +409,14 @@ h1 {
 #play-pause {
     width: 110px;
     height: 110px;
-    background: lightgray;
+    background: rgba(150, 150, 150, 0.664);
     border: 1px solid black;
     border-radius: 100%;
-    margin: 20px 10px 20px 10px;
+    margin: 10px 10px 20px 10px;
 }
 
 #play-pause:hover {
-    background: rgb(155, 145, 145);
+    background: rgba(133, 126, 126, 0.486);
     cursor: pointer;
 }
 
@@ -329,16 +430,23 @@ h1 {
     height: 50px;
 }
 
-.solo-btn {
-    background: rgb(182, 181, 181);
+#loading-img {
+    width: 90px;
+    height: 90px; 
 }
 
 .solod {
-    background: rgb(255, 139, 139);
+    background: rgba(255, 139, 139, 0.493);
+    border: 1px solid black;
 }
 
 .muted {
-    background: rgb(146, 145, 145);
+    background: rgba(136, 135, 135, 0.493);
+    border: 1px solid black;
+}
+
+.muted:hover {
+    background: rgba(153, 136, 136, 0.493);
 }
 
 #solo-btns {
@@ -352,6 +460,7 @@ h1 {
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
+    font-size: 11px;
 }
 
 #vox-solo-btn:focus, #inst-solo-btn:focus, #all-btn:focus {
@@ -378,9 +487,10 @@ h1 {
 .instrumentals ul, .vocals ul {
     height: 80%;
     width: 400px;
-    background: rgba(211, 211, 211, 0.363);
+    background: rgba(211, 211, 211, 0.445);
     overflow-y: auto;
-    border-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border-bottom-left-radius: 3%;
 }
 
 .instrumentals li, .vocals li {
@@ -395,7 +505,12 @@ h1 {
     border-radius: 5px;
     text-align: center;
     line-height: 50px;
-    font-size: 20px;
+    font-size: 18px;
+    -webkit-user-select: none;       
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .instrumentals li:hover, .vocals li:hover {
@@ -407,15 +522,25 @@ h1 {
     outline: none;
 }
 
+.instrumentals li:active, .vocals li:active {
+    background: rgba(167, 125, 125, 0.411);
+}
+
 .selected {
-    background: rgba(167, 125, 125, 0.356) !important;
+    background: rgba(167, 125, 125, 0.411) !important;
 }
 
 .instrumentals label, .vocals label {
     color: black;
     font-size: 30px;
     margin: 0 auto;
-    margin-bottom: 10px;
+    width: 400px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: rgba(179, 168, 168, 0.514);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .instrumentals input, .vocals input {

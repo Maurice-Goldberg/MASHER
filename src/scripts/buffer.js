@@ -57,11 +57,7 @@ class Buffer {
             this.instGainNodes[i] = this.context.createGain();
             this.instrumentals[i].connect(this.instGainNodes[i]);
             this.instGainNodes[i].connect(this.instMasterGainNode);
-            if(i === 0) {
-                this.instGainNodes[i].gain.value = 1;
-            } else {
-                this.instGainNodes[i].gain.value = 0;
-            }
+            this.instGainNodes[i].gain.value = 0;
 
             this.instrumentals[i].loop = true;
         }
@@ -73,11 +69,7 @@ class Buffer {
             this.voxGainNodes[i] = this.context.createGain();
             this.vocals[i].connect(this.voxGainNodes[i]);
             this.voxGainNodes[i].connect(this.voxMasterGainNode);
-            if (i === 0) {
-                this.voxGainNodes[i].gain.value = 1;
-            } else {
-                this.voxGainNodes[i].gain.value = 0;
-            }
+            this.voxGainNodes[i].gain.value = 0;
             
             this.vocals[i].loop = true;
         }
@@ -85,6 +77,8 @@ class Buffer {
         let playPause = document.querySelector('#play-pause');
         playPause.onclick = () => {
             if (playPause.getAttribute("playStatus") === "paused") {
+                playPause.firstElementChild.setAttribute("src", "/src/assets/images/soundon.png");
+                playPause.setAttribute("playStatus", "playing");
                 if(this.numPlayClicks === 0) {
                     for (let i = 0; i < 8; i++) {
                         this.finalMasterGainNode.gain.value = 1;
@@ -94,29 +88,29 @@ class Buffer {
                     this.numPlayClicks++;
 
                     //trigger image changer for ALL 16 img tags
-                    let instImgs = document.querySelector("#left-img-wrapper").children;
+                    let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
                     for (let i = 0; i < instImgs.length; i++) {
                         const imgTag = instImgs[i];
                         this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
                     }
 
-                    let voxImgs = document.querySelector("#right-img-wrapper").children;
+                    let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
                     for (let i = 0; i < voxImgs.length; i++) {
                         const imgTag = voxImgs[i];
                         this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
                     }
                 } else {
                     this.finalMasterGainNode.gain.value = 1;
+                    document.querySelector("#black-bg-left").setAttribute("class", "hidden");
+                    document.querySelector("#black-bg-right").setAttribute("class", "hidden");
                 }
-
-                playPause.firstElementChild.setAttribute("src", "/src/assets/images/soundon.png");
-                playPause.setAttribute("playStatus", "playing");
             } else {
                 this.finalMasterGainNode.gain.value = 0;
                 
-                //this takes some time, so make sure to account for this by creating a loading sign
                 playPause.firstElementChild.setAttribute("src", "/src/assets/images/mute.png");
                 playPause.setAttribute("playStatus", "paused");
+                document.querySelector("#black-bg-left").setAttribute("class", "showing");
+                document.querySelector("#black-bg-right").setAttribute("class", "showing");
             }
         }
 
@@ -135,6 +129,9 @@ class Buffer {
                 //mute vox channel
                 this.voxMasterGainNode.gain.value = 0;
                 this.instMasterGainNode.gain.value = 1;
+
+                document.querySelector("#black-bg-right").setAttribute("class", "showing");
+                document.querySelector("#black-bg-left").setAttribute("class", "hidden");
             }
         }
 
@@ -150,6 +147,10 @@ class Buffer {
                 //mute inst channel
                 this.voxMasterGainNode.gain.value = 1;
                 this.instMasterGainNode.gain.value = 0;
+
+                document.querySelector("#black-bg-left").setAttribute("class", "showing");
+                document.querySelector("#black-bg-right").setAttribute("class", "hidden");
+
             }
         }
 
@@ -164,6 +165,9 @@ class Buffer {
                 //unmute both channels
                 this.voxMasterGainNode.gain.value = 1;
                 this.instMasterGainNode.gain.value = 1;
+
+                document.querySelector("#black-bg-right").setAttribute("class", "hidden");
+                document.querySelector("#black-bg-left").setAttribute("class", "hidden");
             }
         }
     }
