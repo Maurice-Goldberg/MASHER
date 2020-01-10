@@ -16,8 +16,8 @@ class ImageTimer {
             let fullName = this.eleList[i].innerHTML.split(" -")[0];
             let firstName = fullName.split(" ")[0].toLowerCase();
             this.firstNames.push(firstName);
-            for(j = imagesLoaded; j < imagesLoaded + 4; j++) {
-                artistPics.push(`/src/assets/images/artist-pictures/${firstName}/${j+1}.jpg`);
+            for(let j = imagesLoaded; j < imagesLoaded + 4; j++) {
+                artistPics.push(`./dist/images/artist-pictures/${firstName}/${j+1}.jpg`);
             }
             imageStringsObj[firstName] = artistPics;
             imagesLoaded += 4;
@@ -41,4 +41,4 @@ class ImageTimer {
     }
 }
 
-module.exports = ImageTimer;
+export default ImageTimer;

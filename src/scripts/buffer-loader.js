@@ -44,4 +44,4 @@ class BufferLoader {
     }
 }
 
-module.exports = BufferLoader;
+export default BufferLoader;

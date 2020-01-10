@@ -241,6 +241,9 @@ body {
     left: 0;
     right: 0;
     z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 #black-bg-left {
@@ -363,8 +366,8 @@ body {
 
 @font-face {
     font-family: 'aubreyregular';
-    src: url('/src/styles/fonts//aubrey/aubrey-webfont.woff2') format('woff2'),
-         url('/src/styles/fonts/aubrey/aubrey-webfont.woff') format('woff');
+    src: url('./fonts/aubrey/aubrey-webfont.woff2') format('woff2'),
+         url('./fonts/aubrey/aubrey-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
