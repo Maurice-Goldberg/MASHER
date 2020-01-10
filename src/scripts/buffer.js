@@ -24,22 +24,22 @@ class Buffer {
         this.bufferLoader = new BufferLoader(
             this.context,
             [
-                '/src/assets/stems/instrumentals/ariana_inst.wav',
-                '/src/assets/stems/instrumentals/grimes_inst.wav',
-                '/src/assets/stems/instrumentals/lizzo_inst.wav',
-                '/src/assets/stems/instrumentals/robyn_inst.wav',
-                '/src/assets/stems/instrumentals/kim_inst.wav',
-                '/src/assets/stems/instrumentals/justin_inst.wav',
-                '/src/assets/stems/instrumentals/charli_inst.wav',
-                '/src/assets/stems/instrumentals/katy_inst.wav',
-                '/src/assets/stems/vocals/ariana_vox.wav',
-                '/src/assets/stems/vocals/grimes_vox.wav',
-                '/src/assets/stems/vocals/lizzo_vox.wav',
-                '/src/assets/stems/vocals/robyn_vox.wav',
-                '/src/assets/stems/vocals/kim_vox.wav',
-                '/src/assets/stems/vocals/justin_vox.wav',
-                '/src/assets/stems/vocals/charli_vox.wav',
-                '/src/assets/stems/vocals/katy_vox.wav'
+                './dist/stems/instrumentals/ariana_inst.wav',
+                './dist/stems/instrumentals/grimes_inst.wav',
+                './dist/stems/instrumentals/lizzo_inst.wav',
+                './dist/stems/instrumentals/robyn_inst.wav',
+                './dist/stems/instrumentals/kim_inst.wav',
+                './dist/stems/instrumentals/justin_inst.wav',
+                './dist/stems/instrumentals/charli_inst.wav',
+                './dist/stems/instrumentals/katy_inst.wav',
+                './dist/stems/vocals/ariana_vox.wav',
+                './dist/stems/vocals/grimes_vox.wav',
+                './dist/stems/vocals/lizzo_vox.wav',
+                './dist/stems/vocals/robyn_vox.wav',
+                './dist/stems/vocals/kim_vox.wav',
+                './dist/stems/vocals/justin_vox.wav',
+                './dist/stems/vocals/charli_vox.wav',
+                './dist/stems/vocals/katy_vox.wav'
             ],
             this.onLoad
         );

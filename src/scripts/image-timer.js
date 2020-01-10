@@ -17,7 +17,7 @@ class ImageTimer {
             let firstName = fullName.split(" ")[0].toLowerCase();
             this.firstNames.push(firstName);
             for(let j = imagesLoaded; j < imagesLoaded + 4; j++) {
-                artistPics.push(`/dist/images/artist-pictures/${firstName}/${j+1}.jpg`);
+                artistPics.push(`./dist/images/artist-pictures/${firstName}/${j+1}.jpg`);
             }
             imageStringsObj[firstName] = artistPics;
             imagesLoaded += 4;
