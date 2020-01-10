@@ -13,26 +13,24 @@
         <div class="modal-child">
             <h2 class="welcome">Welcome to MASHER!</h2>
             <p class="instructions">
-                MASHER allows you to mash together your favorite pop songs into a pop music frankenstein!
-                Either choose a single song instrumental and hear other songs' vocals parts over it, or choose a single vocal part and hear other songs' instrumentals underneath,
-                creating bangin' pop song mash-ups in real time!<br/><br/>
+                MASHER is a web app created with Vanilla JavaScript and the Web Audio API that showcases one of music's underappreciated genres:
+                the mash-up. Combine your favorite pop songs in real time by either 1) choosing an instrumental from a popular
+                song and layering other songs' melodies over it or 2) choosing a popular song melody and layering other songs'
+                instrumentals underneath.
+                <br/><br/>
 
-                The pictures on the left and right panels of the screen toggle with your selections and change in time with the beat of the song.<br/><br/>
+                Watch as the pictures on the left and right panels of the screen shift with your selections and
+                change in time with the beat of the song!<br/><br/>
 
-                To hear a single part by itself, select "Instrumental Only" or "Vocals Only. To return to hearing both parts at once, select "All".<br/><br/>
+                To hear a single part by itself, select "Instrumental Only" or "Vocals Only. To return to hearing
+                both parts at once, select "All".<br/><br/>
 
                 Some fun combinations of vocals and instrumentals to try: <br/>
-                - Ariana Grande (instrumental) + Justin Bieber (vocal) <br/>
-                - Lizzo (instrumental) + Charli XCX (vocal) <br/>
-                - Robyn (instrumental) + Katy Perry (vocal) <br/>
-                - Grimes (instrumental) + Kim Petras (vocal) 
+                Ariana Grande (instrumental) + Justin Bieber (vocal) <br/>
+                Lizzo (instrumental) + Charli XCX (vocal) <br/>
+                Robyn (instrumental) + Katy Perry (vocal) <br/>
+                Grimes (instrumental) + Kim Petras (vocal) 
             </p>
-            <div id="links">
-                <p></p>
-                <a id="github" target="_blank" href="https:/github.com/maurice-goldberg/masher">Github</a>
-                <a id="linkedin" target="_blank" href="https://www.linkedin.com/in/goldbergmaurice/">LinkedIn</a>
-                <a id="portfolio" target="_blank" href="">Portfolio</a>
-            </div>
             <button class="start-btn">Let's mash!</button>
         </div>
     </div>
@@ -86,16 +84,24 @@
                         <li tabIndex="0">Katy Perry - Teenage Dream</li>
                     </ul>
                 </div>
-                <div class="control-panel-wrapper">
-                    <div class="control-panel">
-                        <button id="play-pause" playStatus="paused">
-                            <img id="loading-img" src="src/assets/images/loading.svg">
-                        </button>
-                        <div id="solo-btns">
-                            <button class="muted" id="inst-solo-btn">Instumental only</button>
-                            <button class="solod" id="all-btn">All</button>
-                            <button class="muted" id="vox-solo-btn">Vocals only</button>
+                <div class="middle-panel">
+                    <div class="control-panel-wrapper">
+                        <div class="control-panel">
+                            <button id="play-pause" playStatus="paused">
+                                <img id="loading-img" src="src/assets/images/loading.svg">
+                            </button>
+                            <div id="solo-btns">
+                                <button class="muted" id="inst-solo-btn">Instumental only</button>
+                                <button class="solod" id="all-btn">All</button>
+                                <button class="muted" id="vox-solo-btn">Vocals only</button>
+                            </div>
                         </div>
+                    </div>
+                    <div id="links">
+                        <p></p>
+                        <a id="github" target="_blank" href="https:/github.com/maurice-goldberg/masher">Github</a>
+                        <a id="linkedin" target="_blank" href="https://www.linkedin.com/in/goldbergmaurice/">LinkedIn</a>
+                        <a id="portfolio" target="_blank" disabled>Portfolio (coming soon)</a>
                     </div>
                 </div>
                 <div class="vocals">

@@ -112,15 +112,15 @@ body {
   animation-name: modal_child_fade_in;
   animation-duration: 0.7s;
   margin: 0 auto;
+  position: relative;
+  top: 4%;
   opacity: 1;
   z-index: 11;
-  position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  top: 4%;
   height: 550px;
   width: 900px;
   border-radius: 5px;
@@ -153,43 +153,11 @@ body {
 }
 
 .instructions {
+    text-align: center;
     margin-left: 15px;
     margin-bottom: 20px;
     font-size: 20px;
     line-height: 24px;
-}
-
-#links {
-    position: absolute;
-    left: 720px;
-    top: 320px;
-    display: flex;
-    flex-direction: column;
-    background: rgb(172, 171, 171);
-    padding: 13px 20px 5px 20px;
-    border-radius: 5px;
-}
-
-a {
-    text-align: center;
-    margin-bottom: 8px;
-    font-size: 20px;
-    line-height: 24px;
-    text-decoration: none;
-    background: darkgray;
-    border-radius: 5px;
-    padding: 8px;
-    background: rgba(201, 142, 142, 0.712);
-    color: black;
-}
-
-a:hover {
-    cursor: pointer;
-    background: rgb(150, 149, 149);
-}
-
-a:active {
-    background: rgb(138, 136, 136);
 }
 
 .start-btn {
@@ -199,16 +167,16 @@ a:active {
     line-height: 24px;
     border-radius: 5px;
     padding: 8px;
-    background: rgb(177, 176, 176);
+    background: rgba(177, 176, 176, 0.671);
 }
 
 .start-btn:hover {
     cursor: pointer;
-    background: rgb(172, 171, 171);
+    background: rgba(161, 161, 161, 0.61);
 }
 
 .start-btn:active {
-    background: rgb(163, 161, 161);
+    background: rgba(153, 151, 151, 0.61);
 }
 
 .start-btn:focus {
@@ -394,16 +362,16 @@ a:active {
 }
 
 @font-face {
-    font-family: 'robota';
-    src: url('/src/styles/fonts/robota/robota.woff2') format('woff2'),
-         url('/src/styles/fonts/robota/robota.woff') format('woff');
+    font-family: 'aubreyregular';
+    src: url('/src/styles/fonts//aubrey/aubrey-webfont.woff2') format('woff2'),
+         url('/src/styles/fonts/aubrey/aubrey-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 h1 {
     color: black;
-    font-family: 'robota';
+    font-family: 'aubreyregular';
     font-size: 65px;
     margin-top: 15px;
     padding-top: 10px;
@@ -461,9 +429,58 @@ h1:hover {
     margin-left: 20px;
 }
 
+.middle-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: center;
+}
+
+
+#links {
+    display: flex;
+    flex-direction: column;
+    background: rgba(204, 190, 190, 0.6);
+    padding: 13px 20px 5px 20px;
+    border-radius: 5px;
+    height: 150px;
+    width: 300px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+a {
+    border: 1px solid rgba(201, 142, 142, 0.712);
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration: none;
+    background: darkgray;
+    border-radius: 5px;
+    padding: 8px;
+    background: rgba(201, 142, 142, 0.712);
+    color: black;
+    -webkit-user-select: none;       
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+a:hover {
+    cursor: pointer;
+    background: rgba(136, 135, 135, 0.493);
+}
+
+a:active {
+    background: rgba(116, 115, 115, 0.493);
+}
+
 .control-panel {
-    margin-top: 140px;
-    height: 40%;
+    margin-bottom: 30px;
+    padding: 20px;
+    height: 170px;
     width: 300px;
     background: rgba(204, 190, 190, 0.6);
     border-radius: 3%;
