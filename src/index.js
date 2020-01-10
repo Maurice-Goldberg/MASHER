@@ -10,9 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const selection = new Selection(newBuffer);
     selection.addClickListeners();
 
+    setTimeout(() => {
+        document.querySelector("#loading-bg").setAttribute("id", "hidden-loading-bg");
+    }, 2000);
+
     let playPause = document.querySelector('#play-pause');
     setTimeout(() => {
         playPause.firstElementChild.setAttribute("id", "play-pause-img");
         playPause.firstElementChild.setAttribute("src", "/src/assets/images/play.png");
-    }, 4000);
+    }, 4500);
 });

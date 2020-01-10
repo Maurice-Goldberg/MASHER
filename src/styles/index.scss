@@ -63,6 +63,30 @@ body {
     overflow-y: hidden;
 }
 
+#loading-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgb(204, 159, 159);
+  z-index: 13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hidden-loading-bg {
+    opacity: 0;
+    animation-name: fadeout;
+    animation-duration: 0.3s;
+}
+
+#loading-bg #loading-img {
+    width: 300px;
+    height: 300px;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -84,7 +108,7 @@ body {
 }
 
 .modal-child {
-  background: rgba(211, 211, 211, 0.842);
+  background: rgba(204, 159, 159, 0.815);
   animation-name: modal_child_fade_in;
   animation-duration: 0.7s;
   margin: 0 auto;
@@ -96,9 +120,9 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  top: 9%;
-  height: 500px;
-  width: 600px;
+  top: 4%;
+  height: 550px;
+  width: 900px;
   border-radius: 5px;
 }
 
@@ -124,29 +148,67 @@ body {
 .welcome {
     margin-top: 15px;
     font-size: 30px;
-    margin-left: 135px;
+    margin-left: 280px;
     margin-bottom: 20px;
 }
 
-.instructions, a, .start-btn {
+.instructions {
     margin-left: 15px;
     margin-bottom: 20px;
     font-size: 20px;
     line-height: 24px;
 }
 
-.start-btn {
+#links {
+    position: absolute;
+    left: 720px;
+    top: 320px;
+    display: flex;
+    flex-direction: column;
+    background: rgb(172, 171, 171);
+    padding: 13px 20px 5px 20px;
+    border-radius: 5px;
+}
+
+a {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration: none;
+    background: darkgray;
     border-radius: 5px;
     padding: 8px;
+    background: rgba(201, 142, 142, 0.712);
+    color: black;
+}
+
+a:hover {
+    cursor: pointer;
+    background: rgb(150, 149, 149);
+}
+
+a:active {
+    background: rgb(138, 136, 136);
+}
+
+.start-btn {
+    margin-left: 370px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 24px;
+    border-radius: 5px;
+    padding: 8px;
+    background: rgb(177, 176, 176);
 }
 
 .start-btn:hover {
     cursor: pointer;
-    background: rgb(224, 223, 223);
+    background: rgb(172, 171, 171);
 }
 
 .start-btn:active {
-    background: rgb(209, 209, 209);
+    background: rgb(163, 161, 161);
 }
 
 .start-btn:focus {
@@ -159,12 +221,6 @@ body {
     justify-content: center;
     margin-right: 12px;
     margin-top: -320px;
-}
-
-.modal-footer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 200px;
 }
 
 
@@ -210,7 +266,7 @@ body {
 }
 
 #full-black-bg {
-    background: black;
+    background: rgb(153, 140, 140);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -220,7 +276,7 @@ body {
 }
 
 #black-bg-left {
-    background: black;
+    background: rgb(153, 140, 140);
     height: 100%;
     width: 50%;
     object-fit: cover;
@@ -233,7 +289,7 @@ body {
 }
 
 #black-bg-right {
-    background: black;
+    background: rgb(153, 140, 140);
     height: 100%;
     width: 50%;
     object-fit: cover;
@@ -294,7 +350,6 @@ body {
     width: 50%;
     object-fit: cover;
     position: absolute;
-    position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -352,6 +407,7 @@ h1 {
     font-size: 65px;
     margin-top: 15px;
     padding-top: 10px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 7px;
     margin-left: 110px;
@@ -376,17 +432,18 @@ h1:hover {
     margin-right: 50px;
     border-radius: 100%;
     width: 60px;
-    height: 60px;
+    height: 50px;
     padding: 8px;
-    background: rgba(161, 161, 161, 0.856);
+    background: rgba(170, 145, 145, 0.712);
     text-align: center;
     vertical-align: center;
     font-size: 50px;
+    border: 1px solid gray;
 }
 
 #question-btn:hover {
-    background: rgba(122, 122, 122, 0.781);
     cursor: pointer;
+    background: rgba(204, 159, 159, 0.712);
 }
 
 #middle-section {
@@ -408,7 +465,7 @@ h1:hover {
     margin-top: 140px;
     height: 40%;
     width: 300px;
-    background: rgba(211, 211, 211, 0.6);
+    background: rgba(204, 190, 190, 0.6);
     border-radius: 3%;
     display: flex;
     flex-direction: column;
@@ -426,7 +483,7 @@ h1:hover {
 }
 
 #play-pause:hover {
-    background: rgba(133, 126, 126, 0.486);
+    background: rgba(204, 159, 159, 0.712);
     cursor: pointer;
 }
 
@@ -446,7 +503,7 @@ h1:hover {
 }
 
 .solod {
-    background: rgba(255, 139, 139, 0.493);
+    background: rgba(204, 159, 159, 0.712);
     border: 1px solid black;
 }
 
@@ -482,7 +539,6 @@ h1:hover {
 }
 
 #vox-solo-btn:active, #inst-solo-btn:active, #all-btn:active {
-    border: none;
     box-shadow: none;
 
 }
