@@ -77,7 +77,7 @@ class Buffer {
         let playPause = document.querySelector('#play-pause');
         playPause.onclick = () => {
             if (playPause.getAttribute("playStatus") === "paused") {
-                playPause.firstElementChild.setAttribute("src", "/src/assets/images/soundon.png");
+                playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
                 playPause.setAttribute("playStatus", "playing");
 
                 //get rid of black bg
@@ -109,7 +109,7 @@ class Buffer {
             } else {
                 this.finalMasterGainNode.gain.value = 0;
                 
-                playPause.firstElementChild.setAttribute("src", "/src/assets/images/mute.png");
+                playPause.firstElementChild.setAttribute("src", "./dist/images/mute.png");
                 playPause.setAttribute("playStatus", "paused");
 
                 //cover with black bg
