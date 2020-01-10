@@ -1,6 +1,6 @@
 import './styles/index.scss';
-const Buffer = require('./scripts/buffer');
-const Selection = require('./scripts/selection');
+import Buffer from './scripts/buffer';
+import Selection from './scripts/selection';
 
 document.addEventListener('DOMContentLoaded', () => {
     window.newBuffer = new Buffer();

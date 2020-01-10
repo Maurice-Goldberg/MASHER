@@ -53,7 +53,29 @@ module.exports = {
                 "sass-loader",
                 "postcss-loader"
             ]
-        }
+        },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            outputPath: "fonts/",
+                            publicPath: "./fonts/"
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                loader: "file-loader",
+                options: {
+                    name: "[name].[ext]",
+                    outputPath: "stems/",
+                    publicPath: "./stems/"
+                }
+            }
         ]
     },
     plugins: [new MiniCssExtractPlugin({

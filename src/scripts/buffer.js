@@ -1,5 +1,5 @@
-const BufferLoader = require('./buffer-loader.js');
-const ImageTimer = require('./image-timer.js');
+import BufferLoader from './buffer-loader.js';
+import ImageTimer from './image-timer.js';
 
 class Buffer {
     constructor() {
@@ -176,4 +176,4 @@ class Buffer {
     }
 }
 
-module.exports = Buffer;
+export default Buffer;
