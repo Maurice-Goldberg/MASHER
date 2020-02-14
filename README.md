@@ -22,7 +22,8 @@ Shows track selection in column, unselecting previously selected track
 ## Design structure
 The MASHER interface contains two columns: vocals and instrumentals. Only one audio track can play from each column at a time, so only two tracks can be mashed up at once. A sound-on/mute button exists in the middle of the screen. A modal also appears when the user clicks the question mark in the top-right of the screen.
 
-![Wireframe](Wireframe.pdf)
+![Wireframe](main_wireframe.png)
+![Modal Wireframe](modal_wireframe.png)
 
 ## Architecture and Technologies
 MASHER uses the following technologies:
