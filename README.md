@@ -20,26 +20,12 @@ Shows track selection in column, unselecting previously selected track
 7. An about modal describes how MASHER works and show on hover over question mark
 
 ## Design structure
-The MASHER interface contains two columns: vocals and instrumentals. Only one audio track can play from each column at a time, so only two tracks can be mashed up at once. A play and pause button exists in the middle of the screen. Each column contains faders that allow the user to increase or decrease the column's volume. A modal also appears when the user hovers over the question mark in the top-right of the screen.
+The MASHER interface contains two columns: vocals and instrumentals. Only one audio track can play from each column at a time, so only two tracks can be mashed up at once. A sound-on/mute button exists in the middle of the screen. A modal also appears when the user clicks the question mark in the top-right of the screen.
 
-For further UI information, please see the wireframes in a separate document.
-
+![Wireframe](main_wireframe.png)
+![Modal Wireframe](modal_wireframe.png)
 
 ## Architecture and Technologies
 MASHER uses the following technologies:
 - Web Audio API for audio controls
 - Vanilla Javascript, HTML, and CSS for all visual elements of the user interface
-
-## Implementation Timeline
-### Day 1:
-Set up basic visual interface and basic play/pause capability for audio
-
-### Day 2:
-Set up all audio controls
-
-### Day 3:
-Do all last styling and try to implement some three.js 3D design features if possible
-
-## Bonus design ideas
-7. Colors lightly strobe in time with music's BPM
-8. Animated head nods up and down in time with music
