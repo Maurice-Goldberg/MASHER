@@ -18,5 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         playPause.firstElementChild.setAttribute("id", "play-pause-img");
         playPause.firstElementChild.setAttribute("src", "./dist/images/play.png");
-    }, 6000);
+    }, 8000);
 });

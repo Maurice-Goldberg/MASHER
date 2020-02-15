@@ -75,8 +75,9 @@ class Buffer {
         }
     
         let playPause = document.querySelector('#play-pause');
+        let buttonImg = document.querySelector(".button-img")
         playPause.onclick = () => {
-            if (playPause.getAttribute("id") === "play-pause-img") {
+            if(buttonImg.id !== "loading-img") {
                 if (playPause.getAttribute("playStatus") === "paused") {
                     playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
                     playPause.setAttribute("playStatus", "playing");
