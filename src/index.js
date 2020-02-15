@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
         document.querySelector("#loading-bg").setAttribute("id", "hidden-loading-bg");
-    }, 2000);
+    }, 4000);
 
     let playPause = document.querySelector('#play-pause');
     setTimeout(() => {
         playPause.firstElementChild.setAttribute("id", "play-pause-img");
         playPause.firstElementChild.setAttribute("src", "./dist/images/play.png");
-    }, 4500);
+    }, 6000);
 });
