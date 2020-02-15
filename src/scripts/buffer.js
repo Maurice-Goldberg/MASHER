@@ -75,45 +75,48 @@ class Buffer {
         }
     
         let playPause = document.querySelector('#play-pause');
+        let buttonImg = document.querySelector(".button-img")
         playPause.onclick = () => {
-            if (playPause.getAttribute("playStatus") === "paused") {
-                playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
-                playPause.setAttribute("playStatus", "playing");
-
-                //get rid of black bg
-                document.querySelector("#full-black-bg").setAttribute("class", "hidden");
-
-                if(this.numPlayClicks === 0) {
-                    for (let i = 0; i < 8; i++) {
-                        this.finalMasterGainNode.gain.value = 1;
-                        this.instrumentals[i].start(0);
-                        this.vocals[i].start(0);
-                    }
-                    this.numPlayClicks++;
-
-                    //trigger image changer for ALL 16 img tags
-                    let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
-                    for (let i = 0; i < instImgs.length; i++) {
-                        const imgTag = instImgs[i];
-                        this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
-                    }
-
-                    let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
-                    for (let i = 0; i < voxImgs.length; i++) {
-                        const imgTag = voxImgs[i];
-                        this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+            if(buttonImg.id !== "loading-img") {
+                if (playPause.getAttribute("playStatus") === "paused") {
+                    playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
+                    playPause.setAttribute("playStatus", "playing");
+    
+                    //get rid of black bg
+                    document.querySelector("#full-black-bg").setAttribute("class", "hidden");
+    
+                    if(this.numPlayClicks === 0) {
+                        for (let i = 0; i < 8; i++) {
+                            this.finalMasterGainNode.gain.value = 0.8;
+                            this.instrumentals[i].start(0);
+                            this.vocals[i].start(0);
+                        }
+                        this.numPlayClicks++;
+    
+                        //trigger image changer for ALL 16 img tags
+                        let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
+                        for (let i = 0; i < instImgs.length; i++) {
+                            const imgTag = instImgs[i];
+                            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+                        }
+    
+                        let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
+                        for (let i = 0; i < voxImgs.length; i++) {
+                            const imgTag = voxImgs[i];
+                            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+                        }
+                    } else {
+                        this.finalMasterGainNode.gain.value = 0.8;
                     }
                 } else {
-                    this.finalMasterGainNode.gain.value = 1;
+                    this.finalMasterGainNode.gain.value = 0;
+                    
+                    playPause.firstElementChild.setAttribute("src", "./dist/images/mute.png");
+                    playPause.setAttribute("playStatus", "paused");
+    
+                    //cover with black bg
+                    document.querySelector("#full-black-bg").setAttribute("class", "showing");
                 }
-            } else {
-                this.finalMasterGainNode.gain.value = 0;
-                
-                playPause.firstElementChild.setAttribute("src", "./dist/images/mute.png");
-                playPause.setAttribute("playStatus", "paused");
-
-                //cover with black bg
-                document.querySelector("#full-black-bg").setAttribute("class", "showing");
             }
         }
 
@@ -131,7 +134,7 @@ class Buffer {
 
                 //mute vox channel
                 this.voxMasterGainNode.gain.value = 0;
-                this.instMasterGainNode.gain.value = 1;
+                this.instMasterGainNode.gain.value = 0.8;
 
                 document.querySelector("#black-bg-right").setAttribute("class", "showing");
                 document.querySelector("#black-bg-left").setAttribute("class", "hidden");
@@ -148,7 +151,7 @@ class Buffer {
                 allBtn.setAttribute("class", "muted");
 
                 //mute inst channel
-                this.voxMasterGainNode.gain.value = 1;
+                this.voxMasterGainNode.gain.value = 0.8;
                 this.instMasterGainNode.gain.value = 0;
 
                 document.querySelector("#black-bg-left").setAttribute("class", "showing");
@@ -166,8 +169,8 @@ class Buffer {
                 instSoloBtn.setAttribute("class", "muted");
 
                 //unmute both channels
-                this.voxMasterGainNode.gain.value = 1;
-                this.instMasterGainNode.gain.value = 1;
+                this.voxMasterGainNode.gain.value = 0.8;
+                this.instMasterGainNode.gain.value = 0.8;
 
                 document.querySelector("#black-bg-right").setAttribute("class", "hidden");
                 document.querySelector("#black-bg-left").setAttribute("class", "hidden");
