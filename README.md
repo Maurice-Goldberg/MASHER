@@ -1,4 +1,4 @@
-# MASHER
+# [MASHER](https://mauricegoldberg.dev/MASHER/)
 
 ## Background
 *MASHER* is an interface that allows users to experience the joy of one of music's underappreciated genres: the mash-up. MASHER uses a pre-assembled set of audio files to create song mash-ups, giving the user complete control over which combinations of songs they wish to combine. With a total of 64 possible song mash-ups combining songs from a wide array of genres, the user can have endless fun frankensteining modern classics like Justin Bieber's "Where Are U Now" with canonical pop oldies such as Prince's "I Would Die 4 U."
