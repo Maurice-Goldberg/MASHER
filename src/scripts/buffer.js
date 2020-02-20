@@ -6,7 +6,7 @@ class Buffer {
         this.imageTimer = new ImageTimer();
         this.init = this.init.bind(this);
         this.onLoad = this.onLoad.bind(this);
-        this.context = new AudioContext();
+        this.addFirstPlayClickListener = this.addFirstPlayClickListener.bind(this);
         this.instGainNodes = [];
         this.voxGainNodes = [];
 
@@ -18,8 +18,37 @@ class Buffer {
         this.voxMasterGainNode.connect(this.finalMasterGainNode);
         this.numPlayClicks = 0;
     }
+
+    addFirstPlayClickListener() {
+        let playPause = document.querySelector('#play-pause');
+        playPause.onclick(() => {
+            if (this.numPlayClicks === 0) {
+                this.init();
+                for (let i = 0; i < 8; i++) {
+                    this.finalMasterGainNode.gain.value = 0.8;
+                    this.instrumentals[i].start(0);
+                    this.vocals[i].start(0);
+                }
+                this.numPlayClicks++;
+    
+                //trigger image changer for ALL 16 img tags
+                let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
+                for (let i = 0; i < instImgs.length; i++) {
+                    const imgTag = instImgs[i];
+                    this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+                }
+    
+                let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
+                for (let i = 0; i < voxImgs.length; i++) {
+                    const imgTag = voxImgs[i];
+                    this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+                }
+            } 
+        })
+    }
     
     init() {
+        this.context = new AudioContext();
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         this.bufferLoader = new BufferLoader(
             this.context,
@@ -75,9 +104,9 @@ class Buffer {
         }
     
         let playPause = document.querySelector('#play-pause');
-        let buttonImg = document.querySelector(".button-img")
+        let buttonImg = document.querySelector(".button-img");
         playPause.onclick = () => {
-            if(buttonImg.id !== "loading-img") {
+            if(this.numPlayClicks !== 0 && buttonImg.id !== "loading-img") {
                 if (playPause.getAttribute("playStatus") === "paused") {
                     playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
                     playPause.setAttribute("playStatus", "playing");
