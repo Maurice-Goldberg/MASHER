@@ -1,5 +1,6 @@
 import BufferLoader from './buffer-loader.js';
 import ImageTimer from './image-timer.js';
+import Selection from './selection';
 
 class Buffer {
     constructor() {
@@ -7,8 +8,26 @@ class Buffer {
         this.init = this.init.bind(this);
         this.onLoad = this.onLoad.bind(this);
         this.addFirstPlayClickListener = this.addFirstPlayClickListener.bind(this);
-        this.instGainNodes = [];
-        this.voxGainNodes = [];
+        this.numPlayClicks = 0;
+    }
+
+    addFirstPlayClickListener() {
+        let playPause = document.querySelector('#play-pause');
+        debugger
+        playPause.onclick = () => {
+            if (this.numPlayClicks === 0) {
+                playPause.firstElementChild.setAttribute("id", "loading-img");
+                playPause.firstElementChild.setAttribute("src", "./dist/images/loading.svg");
+                this.init();
+                this.numPlayClicks++;
+            }
+        }
+    }
+    
+    init() {
+        this.context = new AudioContext();
+        debugger
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
         this.finalMasterGainNode = this.context.createGain();
         this.finalMasterGainNode.connect(this.context.destination);
@@ -16,40 +35,12 @@ class Buffer {
         this.instMasterGainNode.connect(this.finalMasterGainNode);
         this.voxMasterGainNode = this.context.createGain();
         this.voxMasterGainNode.connect(this.finalMasterGainNode);
-        this.numPlayClicks = 0;
-    }
 
-    addFirstPlayClickListener() {
-        let playPause = document.querySelector('#play-pause');
-        playPause.onclick(() => {
-            if (this.numPlayClicks === 0) {
-                this.init();
-                for (let i = 0; i < 8; i++) {
-                    this.finalMasterGainNode.gain.value = 0.8;
-                    this.instrumentals[i].start(0);
-                    this.vocals[i].start(0);
-                }
-                this.numPlayClicks++;
-    
-                //trigger image changer for ALL 16 img tags
-                let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
-                for (let i = 0; i < instImgs.length; i++) {
-                    const imgTag = instImgs[i];
-                    this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
-                }
-    
-                let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
-                for (let i = 0; i < voxImgs.length; i++) {
-                    const imgTag = voxImgs[i];
-                    this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
-                }
-            } 
-        })
-    }
-    
-    init() {
-        this.context = new AudioContext();
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.instrumentals = [];
+        this.vocals = [];
+        this.instGainNodes = [];
+        this.voxGainNodes = [];
+
         this.bufferLoader = new BufferLoader(
             this.context,
             [
@@ -76,8 +67,7 @@ class Buffer {
     }
     
     onLoad(bufferList) {
-        this.instrumentals = [];
-        this.vocals = [];
+        debugger
 
         for (let i = 0; i < 8; i++) {
             this.instrumentals.push(this.context.createBufferSource());
@@ -89,6 +79,7 @@ class Buffer {
             this.instGainNodes[i].gain.value = 0;
 
             this.instrumentals[i].loop = true;
+            this.instrumentals[i].start(0);
         }
         
         for (let i = 0; i < 8; i++) {
@@ -101,10 +92,38 @@ class Buffer {
             this.voxGainNodes[i].gain.value = 0;
             
             this.vocals[i].loop = true;
+            this.vocals[i].start(0);
         }
-    
+
+        this.finalMasterGainNode.gain.value = 0.8;
+
+        //turn icon to sound on once audio is playing
         let playPause = document.querySelector('#play-pause');
+
+        playPause.setAttribute("playStatus", "playing");
+        playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
+        playPause.firstElementChild.setAttribute("id", "play-pause-img");
+        document.querySelector("#full-black-bg").setAttribute("class", "hidden");
+
+        //trigger image changer for ALL 16 img tags
+        debugger
+        let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
+        instImgs.forEach((imgTag, i) => {
+            debugger
+            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+        });
+
+        let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
+        voxImgs.forEach((imgTag, i) => {
+            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
+        });
+
+        const selection = new Selection(window.newBuffer);
+        selection.addSelectionClickListeners();
+    
         let buttonImg = document.querySelector(".button-img");
+
+        //click listener for all clicks after first click
         playPause.onclick = () => {
             if(this.numPlayClicks !== 0 && buttonImg.id !== "loading-img") {
                 if (playPause.getAttribute("playStatus") === "paused") {
@@ -113,30 +132,7 @@ class Buffer {
     
                     //get rid of black bg
                     document.querySelector("#full-black-bg").setAttribute("class", "hidden");
-    
-                    if(this.numPlayClicks === 0) {
-                        for (let i = 0; i < 8; i++) {
-                            this.finalMasterGainNode.gain.value = 0.8;
-                            this.instrumentals[i].start(0);
-                            this.vocals[i].start(0);
-                        }
-                        this.numPlayClicks++;
-    
-                        //trigger image changer for ALL 16 img tags
-                        let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
-                        for (let i = 0; i < instImgs.length; i++) {
-                            const imgTag = instImgs[i];
-                            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
-                        }
-    
-                        let voxImgs = Array.from(document.querySelector("#right-img-wrapper").children).slice(2);
-                        for (let i = 0; i < voxImgs.length; i++) {
-                            const imgTag = voxImgs[i];
-                            this.imageTimer.triggerImageChanges(this.imageTimer.firstNames[i], imgTag);
-                        }
-                    } else {
-                        this.finalMasterGainNode.gain.value = 0.8;
-                    }
+                    this.finalMasterGainNode.gain.value = 0.8;
                 } else {
                     this.finalMasterGainNode.gain.value = 0;
                     

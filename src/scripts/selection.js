@@ -9,6 +9,8 @@ class Selection {
 
         this.processInstTrackClick = this.processInstTrackClick.bind(this);
         this.processVocalsTrackClick = this.processVocalsTrackClick.bind(this);
+        this.addSelectionClickListeners = this.addSelectionClickListeners.bind(this);
+        this.addModalClickListeners = this.addModalClickListeners.bind(this);
         this.buffer = buffer;
     }
 
@@ -83,7 +85,7 @@ class Selection {
         this.startBtn.setAttribute("class", "modal-child-fade-out");
     }
     
-    addClickListeners() {
+    addSelectionClickListeners() {
         for (let i = 0; i < this.instrumentalList.length; i++) {
             let child = this.instrumentalList[i];
             child.addEventListener('click', () => this.processInstTrackClick(i));
@@ -93,11 +95,13 @@ class Selection {
             let child = this.vocalList[i];
             child.onclick = () => this.processVocalsTrackClick(i);
         }
+    }
 
+    addModalClickListeners() {
         this.modalBg.onclick = () => {
             this.closeModal();
         }
-        
+
         this.startBtn.onclick = (event) => {
             this.closeModal();
             event.stopPropagation();
