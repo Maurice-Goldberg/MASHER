@@ -4,8 +4,8 @@ import Selection from './scripts/selection';
 
 document.addEventListener('DOMContentLoaded', () => {
     window.newBuffer = new Buffer();
-    newBuffer.init();
-    newBuffer.onLoad(newBuffer.bufferLoader.bufferList);
+    window.newBuffer.addFirstPlayClickListener();
+    // newBuffer.onLoad(newBuffer.bufferLoader.bufferList);
     
     const selection = new Selection(newBuffer);
     selection.addClickListeners();
