@@ -12,9 +12,28 @@ class Selection {
         this.addSelectionClickListeners = this.addSelectionClickListeners.bind(this);
         this.addModalClickListeners = this.addModalClickListeners.bind(this);
         this.buffer = buffer;
+
+        this.timeToLoadTracks = true;
+        this.instrumentalClicked = false;
+        this.vocalClicked = false;
     }
 
     processInstTrackClick(i) {
+        if(!this.instrumentalClicked) {
+            let instPrompt = document.querySelector('#inst-prompt')
+            instPrompt.setAttribute("style", "display: none;");
+            this.instrumentalClicked = true;
+            
+            let vocalPrompt = document.querySelector('#vocal-prompt');
+            vocalPrompt.innerHTML = "Now choose a vocal! Justin's a great combo.";
+            vocalPrompt.setAttribute("style", "margin-top: -26px; margin-bottom: 10px; -webkit-animation: flash linear 1s infinite; animation: flash linear 1s infinite;");
+        } 
+
+        if(this.vocalClicked) {
+            let finalPrompt = document.querySelector('#final-prompt')
+            finalPrompt.setAttribute("style", "display: none;");
+        }
+
         for (let j = 0; j < this.instrumentalList.length; j++) {
             let child = this.instrumentalList[j];
             let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
@@ -44,31 +63,46 @@ class Selection {
     }
     
     processVocalsTrackClick(i) {
-        for (let j = 0; j < this.vocalList.length; j++) {
-            let child = this.vocalList[j];
-            let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
-            let img = document.querySelector(`#${firstName}-right-img`);
-
-            if (i === j) {
-
-                if(child.classList.contains("selected")) {
+        if(this.instrumentalClicked) {
+            if (!this.vocalClicked) {
+                let vocalPrompt = document.querySelector('#vocal-prompt')
+                vocalPrompt.setAttribute("style", "display: none;");
+                this.vocalClicked = true;
+    
+                let finalPrompt = document.querySelector('#final-prompt');
+                finalPrompt.innerHTML = "Now mix and match!";
+                finalPrompt.setAttribute("style", "width: 340px; font-size: 30px; margin: -37.5px 0px 8px 23px; text-align: center; -webkit-animation: flash linear 1s infinite; animation: flash linear 1s infinite;");
+            } else {
+                let finalPrompt = document.querySelector('#final-prompt')
+                finalPrompt.setAttribute("style", "display: none;");
+            }
+    
+            for (let j = 0; j < this.vocalList.length; j++) {
+                let child = this.vocalList[j];
+                let firstName = child.innerHTML.split(" -")[0].split(" ")[0].toLowerCase();
+                let img = document.querySelector(`#${firstName}-right-img`);
+    
+                if (i === j) {
+    
+                    if(child.classList.contains("selected")) {
+                        child.classList.remove('selected');
+                        this.buffer.voxGainNodes[j].gain.value = 0;
+    
+                        img.setAttribute("class", "hidden");
+                        document.querySelector("#black-bg-right").setAttribute("class", "showing");
+                    } else {
+                        child.classList.add('selected');
+                        this.buffer.voxGainNodes[j].gain.value = 1;
+    
+                        img.setAttribute("class", "showing");
+                        document.querySelector("#black-bg-right").setAttribute("class", "hidden");
+                    }
+                } else {
                     child.classList.remove('selected');
                     this.buffer.voxGainNodes[j].gain.value = 0;
-
+    
                     img.setAttribute("class", "hidden");
-                    document.querySelector("#black-bg-right").setAttribute("class", "showing");
-                } else {
-                    child.classList.add('selected');
-                    this.buffer.voxGainNodes[j].gain.value = 1;
-
-                    img.setAttribute("class", "showing");
-                    document.querySelector("#black-bg-right").setAttribute("class", "hidden");
                 }
-            } else {
-                child.classList.remove('selected');
-                this.buffer.voxGainNodes[j].gain.value = 0;
-
-                img.setAttribute("class", "hidden");
             }
         }
     }
@@ -99,12 +133,18 @@ class Selection {
 
     addModalClickListeners() {
         this.modalBg.onclick = () => {
-            this.closeModal();
+            if(!this.timeToLoadTracks) {
+                this.closeModal();
+            }
         }
 
         this.startBtn.onclick = (event) => {
-            this.closeModal();
             event.stopPropagation();
+            if(this.timeToLoadTracks) {
+                this.buffer.init();
+                this.timeToLoadTracks = false;
+            }
+            this.closeModal();
         }
 
         this.modal.onclick = (event) => {

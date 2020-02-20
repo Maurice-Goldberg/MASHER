@@ -8,20 +8,20 @@ class Buffer {
         this.init = this.init.bind(this);
         this.onLoad = this.onLoad.bind(this);
         this.addFirstPlayClickListener = this.addFirstPlayClickListener.bind(this);
-        this.numPlayClicks = 0;
+        // this.numPlayClicks = 0;
     }
 
     addFirstPlayClickListener() {
-        let playPause = document.querySelector('#play-pause');
+        // let playPause = document.querySelector('#play-pause');
         debugger
-        playPause.onclick = () => {
-            if (this.numPlayClicks === 0) {
-                playPause.firstElementChild.setAttribute("id", "loading-img");
-                playPause.firstElementChild.setAttribute("src", "./dist/images/loading.svg");
-                this.init();
-                this.numPlayClicks++;
-            }
-        }
+        // playPause.onclick = () => {
+        //     if (this.numPlayClicks === 0) {
+        //         playPause.firstElementChild.setAttribute("id", "loading-img");
+        //         playPause.firstElementChild.setAttribute("src", "./dist/images/loading.svg");
+        //         this.init();
+        //         this.numPlayClicks++;
+        //     }
+        // }
     }
     
     init() {
@@ -67,7 +67,6 @@ class Buffer {
     }
     
     onLoad(bufferList) {
-        debugger
 
         for (let i = 0; i < 8; i++) {
             this.instrumentals.push(this.context.createBufferSource());
@@ -97,16 +96,18 @@ class Buffer {
 
         this.finalMasterGainNode.gain.value = 0.8;
 
-        //turn icon to sound on once audio is playing
+        //turn icon to sound on once loaded
         let playPause = document.querySelector('#play-pause');
 
         playPause.setAttribute("playStatus", "playing");
         playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
         playPause.firstElementChild.setAttribute("id", "play-pause-img");
         document.querySelector("#full-black-bg").setAttribute("class", "hidden");
+        let instPrompt = document.querySelector('#inst-prompt')
+        instPrompt.innerHTML = "Choose an instrumental! Ariana's a good start.";
+        instPrompt.setAttribute("style", "margin-top: -26px; margin-bottom: 10px; -webkit-animation: flash linear 1s infinite; animation: flash linear 1s infinite;");
 
         //trigger image changer for ALL 16 img tags
-        debugger
         let instImgs = Array.from(document.querySelector("#left-img-wrapper").children).slice(2);
         instImgs.forEach((imgTag, i) => {
             debugger
@@ -123,9 +124,9 @@ class Buffer {
     
         let buttonImg = document.querySelector(".button-img");
 
-        //click listener for all clicks after first click
+        //click listener for all play button clicks
         playPause.onclick = () => {
-            if(this.numPlayClicks !== 0 && buttonImg.id !== "loading-img") {
+            if(buttonImg.id !== "loading-img") {
                 if (playPause.getAttribute("playStatus") === "paused") {
                     playPause.firstElementChild.setAttribute("src", "./dist/images/soundon.png");
                     playPause.setAttribute("playStatus", "playing");

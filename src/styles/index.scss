@@ -400,8 +400,8 @@ h1:hover {
 
 #question-btn {
     text-align: right;
-    margin-top: 15px;
-    margin-right: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
     border-radius: 100%;
     width: 60px;
     height: 50px;
@@ -563,12 +563,24 @@ a:active {
     box-shadow: none;
 
 }
+
 .instrumentals, .vocals {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
     margin-left: 20px;
     height: 100%;
+}
+
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
 }
 
 .instrumentals ul, .vocals ul {
