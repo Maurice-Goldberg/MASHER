@@ -25,9 +25,15 @@ class Buffer {
     }
     
     init() {
-        this.context = new AudioContext();
-        debugger
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        let AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+        if (AudioContext) {
+            this.context = new AudioContext;
+        } else {
+            // Web Audio API is not supported
+            // Alert the user
+            alert("Sorry, but your browser does not support the Web Audio API, which is necessary for MASHER to work! Please, upgrade to the latest version of your browser or download Google Chrome or Mozilla Firefox.");
+        }
 
         this.finalMasterGainNode = this.context.createGain();
         this.finalMasterGainNode.connect(this.context.destination);
