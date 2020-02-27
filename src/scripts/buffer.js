@@ -50,22 +50,22 @@ class Buffer {
         this.bufferLoader = new BufferLoader(
             this.context,
             [
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/ariana_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/grimes_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/lizzo_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/taylor_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/kim_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/justin_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/charli_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/instrumentals/katy_inst.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/ariana_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/grimes_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/lizzo_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/taylor_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/kim_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/justin_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/charli_vox.wav',
-                'https://masher-tracks.s3.amazonaws.com/vocals/katy_vox.wav'
+                './dist/stems/instrumentals/ariana_inst.wav',
+                './dist/stems/instrumentals/grimes_inst.wav',
+                './dist/stems/instrumentals/lizzo_inst.wav',
+                './dist/stems/instrumentals/taylor_inst.wav',
+                './dist/stems/instrumentals/kim_inst.wav',
+                './dist/stems/instrumentals/justin_inst.wav',
+                './dist/stems/instrumentals/charli_inst.wav',
+                './dist/stems/instrumentals/katy_inst.wav',
+                './dist/stems/vocals/ariana_vox.wav',
+                './dist/stems/vocals/grimes_vox.wav',
+                './dist/stems/vocals/lizzo_vox.wav',
+                './dist/stems/vocals/taylor_vox.wav',
+                './dist/stems/vocals/kim_vox.wav',
+                './dist/stems/vocals/justin_vox.wav',
+                './dist/stems/vocals/charli_vox.wav',
+                './dist/stems/vocals/katy_vox.wav'
             ],
             this.onLoad
         );
